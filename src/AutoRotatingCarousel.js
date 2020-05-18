@@ -157,7 +157,8 @@ class AutoRotatingCarousel extends Component {
       ModalProps,
       open,
       onClose,
-      onStart
+      onStart,
+      customChildren
     } = this.props
     const landscape = mobile && landscapeProp
     const transitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen }
@@ -216,6 +217,7 @@ class AutoRotatingCarousel extends Component {
                   [classes.footerMobileLandscape]: landscape
                 })}
               >
+                {customChildren && customChildren}
                 {label && <Button
                   variant='contained'
                   onClick={onStart}
@@ -296,7 +298,9 @@ AutoRotatingCarousel.propTypes = {
   /** Controls whether the AutoRotatingCarousel is opened or not. */
   open: PropTypes.bool,
   /** If `true`, the left and right arrows are hidden in the desktop version. */
-  hideArrows: PropTypes.bool
+  hideArrows: PropTypes.bool,
+  /** Custom element to add close to the button */
+  customChildren: PropTypes.element
 }
 
 export default withStyles(styles)(AutoRotatingCarousel)
